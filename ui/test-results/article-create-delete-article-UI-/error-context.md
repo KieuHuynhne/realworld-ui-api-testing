@@ -1,0 +1,47 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - navigation [ref=e4]:
+      - generic:
+        - link "conduit" [ref=e5] [cursor=pointer]:
+          - /url: "#/"
+        - list [ref=e6]:
+          - listitem [ref=e7]:
+            - link "Home" [ref=e8] [cursor=pointer]:
+              - /url: "#/"
+          - listitem [ref=e9]:
+            - link "Sign in" [ref=e10] [cursor=pointer]:
+              - /url: "#/login"
+          - listitem [ref=e11]:
+            - link "Sign up" [ref=e12] [cursor=pointer]:
+              - /url: "#/register"
+        - text:  
+    - generic [ref=e17]:
+      - heading "Sign up" [level=1] [ref=e18]
+      - paragraph [ref=e19]:
+        - link "Have an account?" [ref=e20] [cursor=pointer]:
+          - /url: "#/login"
+      - group [ref=e22]:
+        - group [ref=e23]:
+          - textbox "Username" [ref=e24]: qa_user86522
+        - group [ref=e25]:
+          - textbox "Email" [ref=e26]: qa_user86522@example.com
+        - group [ref=e27]:
+          - textbox "Password" [ref=e28]: Passw0rd!
+        - button "Sign up" [ref=e29] [cursor=pointer]
+    - contentinfo [ref=e30]:
+      - generic [ref=e31]:
+        - link "conduit" [ref=e32] [cursor=pointer]:
+          - /url: "#/"
+        - generic [ref=e33]:
+          - text: © 2025. An interactive learning project from
+          - link "Thinkster" [ref=e34] [cursor=pointer]:
+            - /url: https://thinkster.io
+          - text: . Code licensed under MIT.
+  - link " Fork on GitHub" [ref=e35] [cursor=pointer]:
+    - /url: https://github.com/gothinkster/angularjs-realworld-example-app
+    - generic [ref=e36]: 
+    - text: Fork on GitHub
+```

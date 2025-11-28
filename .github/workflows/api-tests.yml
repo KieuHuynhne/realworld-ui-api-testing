@@ -1,0 +1,41 @@
+name: API Tests (Newman)
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  newman:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install newman
+        run: npm install -g newman newman-reporter-htmlextra
+
+      - name: Run Postman Collection with Newman
+        env:
+          BASE_URL: ${{ secrets.BASE_URL }}
+          # fallback to default inside collection if not set
+        run: |
+          mkdir -p reports
+          # run collection; if you set BASE_URL secret it will be passed via --env-var
+          if [ -z "${{ secrets.BASE_URL }}" ]; then
+            npx newman run api/RealWorld.postman_collection.json -e api/RealWorld.postman_environment.json -r htmlextra,cli --reporter-htmlextra-export reports/api-report.html
+          else
+            npx newman run api/RealWorld.postman_collection.json -e api/RealWorld.postman_environment.json --env-var base_url=${{ secrets.BASE_URL }} -r htmlextra,cli --reporter-htmlextra-export reports/api-report.html
+          fi
+
+      - name: Upload API report
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-report
+          path: reports/api-report.html
